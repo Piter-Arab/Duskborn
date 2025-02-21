@@ -1,0 +1,114 @@
+[gd_scene load_steps=9 format=3 uid="uid://bx8104dcuov6o"]
+
+[ext_resource type="Script" path="res://scenes/Player/Player.gd" id="1_1ya7i"]
+[ext_resource type="PackedScene" uid="uid://cp5r7bcoa8x03" path="res://scenes/Gun/Gun.tscn" id="2_a6veq"]
+[ext_resource type="Texture2D" uid="uid://c4m6vs4tkd5uv" path="res://assets/textures/crosshair/PNG/Black/crosshair008.png" id="3_wqr76"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rqmgm"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_36a3s"]
+
+[sub_resource type="Animation" id="Animation_3qj01"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraController/Recoil/Camera3D/Gun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.474, -0.279, -0.596)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraController/Recoil/Camera3D/Gun:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5obtq"]
+resource_name = "shoot"
+length = 0.35
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraController/Recoil/Camera3D/Gun:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.35),
+"transitions": PackedFloat32Array(-2, 1, -2),
+"update": 0,
+"values": [Vector3(0.474402, -0.313778, -0.640758), Vector3(0.474402, -0.228756, -0.564403), Vector3(0.474402, -0.313778, -0.640758)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraController/Recoil/Camera3D/Gun:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.35),
+"transitions": PackedFloat32Array(-2, 1, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.391582, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_serxc"]
+_data = {
+"RESET": SubResource("Animation_3qj01"),
+"shoot": SubResource("Animation_5obtq")
+}
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_1ya7i")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_rqmgm")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_36a3s")
+
+[node name="CameraController" type="Node3D" parent="."]
+
+[node name="Recoil" type="Node3D" parent="CameraController"]
+
+[node name="Camera3D" type="Camera3D" parent="CameraController/Recoil"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.554623, 0)
+
+[node name="Gun" parent="CameraController/Recoil/Camera3D" instance=ExtResource("2_a6veq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.474, -0.279, -0.596)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CameraController/Recoil/Camera3D/Gun"]
+root_node = NodePath("../../../../..")
+libraries = {
+"": SubResource("AnimationLibrary_serxc")
+}
+
+[node name="TextureRect" type="TextureRect" parent="CameraController/Recoil/Camera3D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_wqr76")
+
+[connection signal="fire_acction_called" from="." to="CameraController/Recoil/Camera3D/Gun" method="_on_player_fire_acction_called"]

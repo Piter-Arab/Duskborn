@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dncaar3xunba4"
+path="res://.godot/imported/blasterM.obj-b3aab9dd2b929e2f18ff62e10af1a800.mesh"
+
+[deps]
+
+files=["res://.godot/imported/blasterM.obj-b3aab9dd2b929e2f18ff62e10af1a800.mesh"]
+
+source_file="res://assets/models/guns/OBJ format/blasterM.obj"
+dest_files=["res://.godot/imported/blasterM.obj-b3aab9dd2b929e2f18ff62e10af1a800.mesh", "res://.godot/imported/blasterM.obj-b3aab9dd2b929e2f18ff62e10af1a800.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

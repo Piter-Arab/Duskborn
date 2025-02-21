@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://uwuvct75kbeb"
+path="res://.godot/imported/targetB.obj-5238d61a9d420cd20748c9c2968aa493.mesh"
+
+[deps]
+
+files=["res://.godot/imported/targetB.obj-5238d61a9d420cd20748c9c2968aa493.mesh"]
+
+source_file="res://assets/models/guns/OBJ format/targetB.obj"
+dest_files=["res://.godot/imported/targetB.obj-5238d61a9d420cd20748c9c2968aa493.mesh", "res://.godot/imported/targetB.obj-5238d61a9d420cd20748c9c2968aa493.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

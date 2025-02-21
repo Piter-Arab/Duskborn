@@ -1,0 +1,78 @@
+[gd_scene load_steps=15 format=3 uid="uid://cp5r7bcoa8x03"]
+
+[ext_resource type="ArrayMesh" uid="uid://cx6g2bfanc1ov" path="res://assets/models/guns/OBJ format/blasterH.obj" id="1_2e1d5"]
+[ext_resource type="Script" path="res://scenes/Gun/Gun.gd" id="1_exksw"]
+[ext_resource type="Texture2D" uid="uid://dvmya22qqlv3e" path="res://assets/textures/MuzzleFlashes/Red/ef_1/ef_1_00000.png" id="2_6ewai"]
+[ext_resource type="Texture2D" uid="uid://c4rku68ef4ucj" path="res://assets/textures/MuzzleFlashes/Red/ef_1/ef_1_00001.png" id="3_2647b"]
+[ext_resource type="Texture2D" uid="uid://x56uip8w4li1" path="res://assets/textures/MuzzleFlashes/Red/ef_1/ef_1_00002.png" id="4_l1t27"]
+[ext_resource type="ArrayMesh" uid="uid://jkldleghayb6" path="res://assets/models/guns/OBJ format/blasterF.obj" id="6_gmgys"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fd036"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6g2v"]
+albedo_color = Color(0.152941, 0.152941, 0.152941, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qqri3"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uyjqg"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ddkke"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6ewai")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6ewai")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2647b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l1t27")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7boqu"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kmvpk"]
+albedo_color = Color(0.156863, 0.156863, 0.156863, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kdnyi"]
+albedo_color = Color(0.227451, 0.227451, 0.227451, 1)
+
+[node name="Gun" type="Node3D"]
+script = ExtResource("1_exksw")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("1_2e1d5")
+surface_material_override/0 = SubResource("StandardMaterial3D_fd036")
+surface_material_override/1 = SubResource("StandardMaterial3D_v6g2v")
+surface_material_override/2 = SubResource("StandardMaterial3D_qqri3")
+surface_material_override/3 = SubResource("StandardMaterial3D_uyjqg")
+
+[node name="MuzzleSprite" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(-2.18557e-09, 0, -0.05, 0, 0.05, 0, 0.05, 0, -2.18557e-09, 0, 0.0244192, -0.899904)
+sprite_frames = SubResource("SpriteFrames_ddkke")
+frame = 5
+frame_progress = 1.0
+
+[node name="BlasterF" type="MeshInstance3D" parent="."]
+mesh = ExtResource("6_gmgys")
+surface_material_override/0 = SubResource("StandardMaterial3D_7boqu")
+surface_material_override/1 = SubResource("StandardMaterial3D_kmvpk")
+surface_material_override/4 = SubResource("StandardMaterial3D_kdnyi")

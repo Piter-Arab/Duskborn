@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bvy0xau7t6rjm"
+path="res://.godot/imported/blasterA.obj-3453c13d5f467665bc830e322f2f3880.mesh"
+
+[deps]
+
+files=["res://.godot/imported/blasterA.obj-3453c13d5f467665bc830e322f2f3880.mesh"]
+
+source_file="res://assets/models/guns/OBJ format/blasterA.obj"
+dest_files=["res://.godot/imported/blasterA.obj-3453c13d5f467665bc830e322f2f3880.mesh", "res://.godot/imported/blasterA.obj-3453c13d5f467665bc830e322f2f3880.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
