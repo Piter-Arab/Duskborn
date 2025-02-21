@@ -72,7 +72,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_br6bs")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Map/Dune/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_bgvpu")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Map"]
+[node name="Sun" type="MeshInstance3D" parent="Enviroment/Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 431.408, 569.376, -635.126)
 mesh = SubResource("SphereMesh_t62xf")
 surface_material_override/0 = SubResource("StandardMaterial3D_ljfbx")

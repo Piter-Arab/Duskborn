@@ -3,6 +3,7 @@ extends CharacterBody3D
 @onready var camera: Camera3D = $CameraController/Recoil/Camera3D
 @onready var gun: Node3D = $CameraController/Recoil/Camera3D/Gun
 @onready var gun_anim: AnimationPlayer = $CameraController/Recoil/Camera3D/Gun/AnimationPlayer
+@onready var gun_barrel: RayCast3D = $CameraController/Recoil/Camera3D/Gun/RayCast3D
 
 signal fire_acction_called
 
@@ -12,6 +13,10 @@ const JUMP_VELOCITY: float = 5
 const MOUSE_SENS: float = 0.002
 const EASE_FACTOR: float = 0.1
 var CURRENT_SPEED: float = SPEED
+var ADS: bool = false
+
+var bullet: PackedScene = load("res://scenes/Bullet/bullet.tscn")
+var bullet_instance
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -33,9 +38,19 @@ func _physics_process(delta) -> void:
 
 	# Handle primary fire
 	if Input.is_action_pressed("fire"):
-		fire_acction_called.emit()
-		gun_anim.play("shoot")
-
+		if ADS:
+			gun_anim.play("ADS_shoot")
+		else:
+			gun_anim.play("shoot")
+	
+	if Input.is_action_just_pressed("ads"):
+		if ADS:
+			ADS = false
+			gun_anim.play_backwards("ADS")
+		else:
+			ADS = true
+			gun_anim.play("ADS")
+	
 	# Handle sprint.
 	if Input.is_action_pressed("sprint"):
 		CURRENT_SPEED = SPRINT_SPEED
@@ -60,3 +75,12 @@ func _physics_process(delta) -> void:
 
 	# Move the character.
 	move_and_slide()
+
+func emit_fire_acction_called() -> void:
+	fire_acction_called.emit()
+
+func add_bullet() -> void:
+	bullet_instance = bullet.instantiate()
+	bullet_instance.position = gun_barrel.global_position
+	bullet_instance.transform.basis = gun_barrel.global_transform.basis
+	get_parent().add_child(bullet_instance)
